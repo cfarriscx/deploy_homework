@@ -31,7 +31,7 @@ openshift_release=3.11.16
 
 
 # Node Groups
-openshift_node_groups=[{'name': 'node-config-master', 'labels': ['node-role.kubernetes.io/master=true','runtime=docker']}, {'name': 'node-config-infra', 'labels': ['node-role.kubernetes.io/infra=true','runtime=docker']}, {'name': 'node-config-glusterfs', 'labels': ['runtime=docker']}, {'name': 'node-config-compute', 'labels': ['node-role.kubernetes.io/compute=true','runtime=docker'], 'edits': [{ 'key': 'kubeletArguments.pods-per-core','value': ['20']}]}]
+openshift_node_groups=[{'name': 'node-config-master', 'labels': ['node-role.kubernetes.io/master=true','runtime=docker']}, {'name': 'node-config-infra', 'labels': ['node-role.kubernetes.io/infra=true','runtime=docker']}, {'name': 'node-config-nfs', 'labels': ['runtime=docker']}, {'name': 'node-config-compute', 'labels': ['node-role.kubernetes.io/compute=true','runtime=docker'], 'edits': [{ 'key': 'kubeletArguments.pods-per-core','value': ['20']}]}]
 # Configure node kubelet arguments. pods-per-core is valid in OpenShift Origin 1.3 or OpenShift Container Platform 3.3 and later. -> These  need to go into the above
 # openshift_node_kubelet_args={'pods-per-core': ['10'], 'max-pods': ['250'], 'image-gc-high-threshold': ['85'], 'image-gc-low-threshold': ['75']}
 
@@ -48,56 +48,18 @@ openshift_enable_olm=true
 
 #oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
 oreg_url=registry.redhat.io/openshift3/ose-${component}:${version}
-oreg_auth_user=REPLACE_ME
-oreg_auth_password=REPLACE_ME
+oreg_auth_user=11009103|dallasoct2018
+oreg_auth_password=eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiI4MzAyMTUzMTVhYjA0MWMzYmIyNGU3YWM1M2Q4ZWM5YSJ9.h7NPfvFihkalkGZF8o_XJYejrD-fv-li6ObdtPnb0FMZaSIG8wjK9JVjgaKcg5QU6kIx1cny8S4R29_i741yxCCranntH_ixGm1ReW8fhFmzC9_Am71hXaDgojeAXtFxT7hD-Mi-71GTOmHk73Y1YGZE39cVmIrsxET4KKxxHkBF5Txk9bAG6TBhxPW5Y3l1g_c0Dr0YQ2CgN4AD0i3oSnPm1QAlbccgIlLD2no8lbjishejjvdM67GLbl_o1NhWdPOfIL2eHK2gufxWZEkrJdnvSrshzX5uRVLKVN7YH0WbJSFYg6X7jeSVi_y_auO7f32yBzYnS4Dj4De8TLlFeRe1Zvq2qs9InNf7xH8o7bOrD0_fjpA2CIdnZdry6V63CZOcw_KtmUbg1bg4Zi1h_X-T3LKV5pHMSDGKZp2271UXZfylEW57DiCUGzbzAhR8rqWRGq0bbR0Xzdeps_c-U81Aj7__rsXJlgE5BOvBW4rJZiB4jEFIplEhXWRs2pQ_mEDB8zwPe_DB74SYZ0dcYsqulikuntSvQ9HEPBmm3IxGN1da3AncNVu2BOsmShocuoLNmxEENMo2KkLratFfBgj2dHKzITamu_PcEXA9-tgJH7ix5u1ZLCKWl5EPsnvbfCtDDpDeivPWLtFc_TH1d9GiBdjDvIe10yxurcEuox8
 
 # For Operator Framework Images
-openshift_additional_registry_credentials=[{'host':'registry.connect.redhat.com','user':'REPLACE_ME','password':'REPLACE_ME','test_image':'mongodb/enterprise-operator:0.3.2'}]
+openshift_additional_registry_credentials=[{'host':'registry.connect.redhat.com','user':'11009103|dallasoct2018','password':'eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiI4MzAyMTUzMTVhYjA0MWMzYmIyNGU3YWM1M2Q4ZWM5YSJ9.h7NPfvFihkalkGZF8o_XJYejrD-fv-li6ObdtPnb0FMZaSIG8wjK9JVjgaKcg5QU6kIx1cny8S4R29_i741yxCCranntH_ixGm1ReW8fhFmzC9_Am71hXaDgojeAXtFxT7hD-Mi-71GTOmHk73Y1YGZE39cVmIrsxET4KKxxHkBF5Txk9bAG6TBhxPW5Y3l1g_c0Dr0YQ2CgN4AD0i3oSnPm1QAlbccgIlLD2no8lbjishejjvdM67GLbl_o1NhWdPOfIL2eHK2gufxWZEkrJdnvSrshzX5uRVLKVN7YH0WbJSFYg6X7jeSVi_y_auO7f32yBzYnS4Dj4De8TLlFeRe1Zvq2qs9InNf7xH8o7bOrD0_fjpA2CIdnZdry6V63CZOcw_KtmUbg1bg4Zi1h_X-T3LKV5pHMSDGKZp2271UXZfylEW57DiCUGzbzAhR8rqWRGq0bbR0Xzdeps_c-U81Aj7__rsXJlgE5BOvBW4rJZiB4jEFIplEhXWRs2pQ_mEDB8zwPe_DB74SYZ0dcYsqulikuntSvQ9HEPBmm3IxGN1da3AncNVu2BOsmShocuoLNmxEENMo2KkLratFfBgj2dHKzITamu_PcEXA9-tgJH7ix5u1ZLCKWl5EPsnvbfCtDDpDeivPWLtFc_TH1d9GiBdjDvIe10yxurcEuox8','test_image':'mongodb/enterprise-operator:0.3.2'}]
 
 openshift_examples_modify_imagestreams=true
 
 ###########################################################################
-### OpenShift Container Storage
+### NFS configuration
 ###########################################################################
 
-openshift_master_dynamic_provisioning_enabled=True
-
-# CNS storage cluster
-# From https://github.com/red-hat-storage/openshift-cic
-openshift_storage_glusterfs_namespace=openshift-storage
-openshift_storage_glusterfs_storageclass=true
-openshift_storage_glusterfs_storageclass_default=false
-
-openshift_storage_glusterfs_block_deploy=true
-openshift_storage_glusterfs_block_host_vol_create=true
-openshift_storage_glusterfs_block_host_vol_size=200
-openshift_storage_glusterfs_block_storageclass=true
-openshift_storage_glusterfs_block_storageclass_default=true
-
-# Container image to use for glusterfs pods
-openshift_storage_glusterfs_image="registry.access.redhat.com/rhgs3/rhgs-server-rhel7:v3.10"
-
-# Container image to use for glusterblock-provisioner pod
-openshift_storage_glusterfs_block_image="registry.access.redhat.com/rhgs3/rhgs-gluster-block-prov-rhel7:v3.10"
-
-# Container image to use for heketi pods
-openshift_storage_glusterfs_heketi_image="registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7:v3.10"
-
-# GlusterFS version
-#  Knowledgebase
-#   https://access.redhat.com/solutions/3617551
-#  Bugzilla
-#   https://bugzilla.redhat.com/show_bug.cgi?id=163.1057
-#  Complete OpenShift GlusterFS Configuration README
-#   https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs
-openshift_storage_glusterfs_version=v3.10
-openshift_storage_glusterfs_block_version=v3.10
-openshift_storage_glusterfs_s3_version=v3.10
-openshift_storage_glusterfs_heketi_version=v3.10
-# openshift_storage_glusterfs_registry_version=v3.10
-# openshift_storage_glusterfs_registry_block_version=v3.10
-# openshift_storage_glusterfs_registry_s3_version=v3.10
-# openshift_storage_glusterfs_registry_heketi_version=v3.10
 
 
 ###########################################################################
@@ -164,8 +126,8 @@ openshift_cluster_monitoring_operator_alertmanager_storage_enabled=True
 # will use deafult storage class until then
 # so set the block storage class as default
 
-# openshift_cluster_monitoring_operator_prometheus_storage_class_name='glusterfs-storage-block'
-# openshift_cluster_monitoring_operator_alertmanager_storage_class_name='glusterfs-storage-block'
+# openshift_cluster_monitoring_operator_prometheus_storage_class_name='nfs'
+# openshift_cluster_monitoring_operator_alertmanager_storage_class_name='nfs'
 
 ########################
 # Cluster Metrics
@@ -175,7 +137,7 @@ openshift_metrics_install_metrics=True
 
 
 openshift_metrics_cassandra_storage_type=dynamic
-openshift_metrics_cassandra_pvc_storage_class_name='glusterfs-storage-block'
+openshift_metrics_cassandra_pvc_storage_class_name='nfs'
 
 openshift_metrics_hawkular_nodeselector={"node-role.kubernetes.io/infra": "true"}
 openshift_metrics_cassandra_nodeselector={"node-role.kubernetes.io/infra": "true"}
@@ -204,7 +166,7 @@ openshift_grafana_node_selector={"node-role.kubernetes.io/infra":"true"}
 openshift_grafana_storage_type=pvc
 openshift_grafana_pvc_size=2Gi
 openshift_grafana_node_exporter=true
-openshift_grafana_sc_name=glusterfs-storage
+openshift_grafana_sc_name=nfs
 
 ########################
 # Cluster Logging
@@ -215,7 +177,7 @@ openshift_logging_install_eventrouter=True
 
 openshift_logging_es_pvc_dynamic=true
 openshift_logging_es_pvc_size=20Gi
-openshift_logging_es_pvc_storage_class_name='glusterfs-storage-block'
+openshift_logging_es_pvc_storage_class_name='nfs'
 openshift_logging_es_memory_limit=8Gi
 openshift_logging_es_cluster_size=1
 openshift_logging_curator_default_days=2
@@ -242,7 +204,7 @@ openshift_hosted_registry_pullthrough=true
 openshift_hosted_registry_acceptschema2=true
 openshift_hosted_registry_enforcequota=true
 
-openshift_hosted_registry_storage_kind=glusterfs
+openshift_hosted_registry_storage_kind=nfs
 openshift_hosted_registry_storage_volume_size=10Gi
 openshift_hosted_registry_selector="node-role.kubernetes.io/infra=true"
 
@@ -273,7 +235,7 @@ lb
 masters
 etcd
 nodes
-glusterfs
+nfs
 
 [lb]
 loadbalancer1.9c36.internal
@@ -305,11 +267,7 @@ node3.9c36.internal openshift_node_group_name='node-config-compute' openshift_no
 
 ## These are OCS nodes
 support1.9c36.internal openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
-support2.9c36.internal openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
-support3.9c36.internal openshift_node_group_name='node-config-compute' openshift_node_problem_detector_install=true
 
 
-[glusterfs]
+[nfs]
 support1.9c36.internal glusterfs_devices='[ "/dev/xvdd" ]'
-support2.9c36.internal glusterfs_devices='[ "/dev/xvdd" ]'
-support3.9c36.internal glusterfs_devices='[ "/dev/xvdd" ]'
